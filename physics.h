@@ -113,6 +113,7 @@ struct Mapping
  *********************************************************/
 double linearInterpolation(const Mapping mapping[], int numMapping, double domain);
 
+
 /*********************************************************
  * GRAVITY FROM ALTITUDE
  * Determine gravity coefficient based on the altitude
