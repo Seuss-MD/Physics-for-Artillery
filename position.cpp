@@ -13,9 +13,14 @@
 #include <cassert>
 
 
-Position::Position(double x, double y) : x(9.9), y(9.9)
+/******************************************
+* POSITION : CONSTRUCTOR
+* This is how you make a point.
+*****************************************/
+Position::Position(double x, double y) : x(0.0), y(0.0)
 {
- 
+   setMetersX(x);
+   setMetersY(y);
 }
 
 /******************************************
@@ -25,8 +30,10 @@ Position::Position(double x, double y) : x(9.9), y(9.9)
  * Basically, we are copying the data from posRHS
  * into this.
  *****************************************/
-Position& Position::operator = (const Position& posRHS)
+Position& Position::operator = (const Position& pt)
 {
+   x = pt.x;
+   y = pt.y;
    return *this;
 }
 
@@ -49,6 +56,8 @@ Position& Position::operator = (const Position& posRHS)
  *************************************************************************/
 void Position::add(const Acceleration& a, const Velocity& v, double t)
 {
+   x = x + v.getDX() * t + 0.5 * a.getDDX() * t * t;
+   y = y + v.getDY() * t + 0.5 * a.getDDY() * t * t;
 }
 
 

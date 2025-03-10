@@ -188,7 +188,17 @@ private:
     *********************************************/
    void getZoom_member()
    {
-      assertUnit(NOT_YET_IMPLEMENTED);
+      // setup
+      Position pos;
+      pos.metersFromPixels = 123.4;
+      double zoom = 0;
+
+      // exercise
+      zoom = pos.getZoom();
+
+      // verify
+      assertEquals(zoom, 123.4);
+      assertEquals(pos.metersFromPixels, 123.4);
    }
    
    /*********************************************
@@ -199,9 +209,22 @@ private:
     *          pos1.metersFromPixels=123.4 (last assignment sticks)
     *          pos2.metersFromPixels=123.4
     *********************************************/
-   void getZoom_anotherVariable()
+   void getZoom_anotherVariable() /////////////////////////////////////////////////// look back at this one!!!!!!!!!!
    {
-      assertUnit(NOT_YET_IMPLEMENTED);
+      // setup
+      Position pos1;
+      Position pos2;
+      pos1.metersFromPixels = 99.9;
+      pos2.metersFromPixels = 123.4;
+      double zoom = 0;
+
+      // exercise
+      zoom = pos2.getZoom();
+
+      // verify
+      assertEquals(zoom, 123.4);
+      assertEquals(pos1.metersFromPixels, 123.4);
+      assertEquals(pos2.metersFromPixels, 123.4);
    }
 
 
@@ -260,7 +283,21 @@ private:
     *********************************************/
    void getPixelsX_noZoom()
    {
-      assertUnit(NOT_YET_IMPLEMENTED);
+      // setup
+      double metersFromPixels = Position::metersFromPixels;
+      Position::metersFromPixels = 1;
+      Position pos;
+      pos.x = 123.4;
+      pos.y = 567.8;
+      // exercise
+      double x = pos.getPixelsX();
+      // verify
+      assertEquals(pos.x, 123.4);
+      assertEquals(pos.y, 567.8);
+      assertEquals(pos.metersFromPixels, 1);
+      assertEquals(x, 123.4);
+      // teardown
+      Position::metersFromPixels = metersFromPixels;
    }
    
    /*********************************************
@@ -271,7 +308,21 @@ private:
     *********************************************/
    void getPixelsX_zoom()
    {
-      assertUnit(NOT_YET_IMPLEMENTED);
+      // setup
+      double metersFromPixels = Position::metersFromPixels;
+      Position::metersFromPixels = 100;
+      Position pos;
+      pos.x = 123.4;
+      pos.y = 567.8;
+      // exercise
+      double x = pos.getPixelsX();
+      // verify
+      assertEquals(pos.x, 123.4);
+      assertEquals(pos.y, 567.8);
+      assertEquals(pos.metersFromPixels, 100);
+      assertEquals(x, 1.234);
+      // teardown
+      Position::metersFromPixels = metersFromPixels;
    }
 
    /*********************************************
@@ -281,7 +332,21 @@ private:
     *********************************************/
    void getPixelsY_noZoom()
    {
-      assertUnit(NOT_YET_IMPLEMENTED);
+      // setup
+      double metersFromPixels = Position::metersFromPixels;
+      Position::metersFromPixels = 1;
+      Position pos;
+      pos.x = 123.4;
+      pos.y = 567.8;
+      // exercise
+      double y = pos.getPixelsY();
+      // verify
+      assertEquals(pos.x, 123.4);
+      assertEquals(pos.y, 567.8);
+      assertEquals(pos.metersFromPixels, 1);
+      assertEquals(y, 567.8);
+      // teardown
+      Position::metersFromPixels = metersFromPixels;
    }
 
    /*********************************************
@@ -291,7 +356,21 @@ private:
     *********************************************/
    void getPixelsY_zoom()
    {
-      assertUnit(NOT_YET_IMPLEMENTED);
+      // setup
+      double metersFromPixels = Position::metersFromPixels;
+      Position::metersFromPixels = 100;
+      Position pos;
+      pos.x = 123.4;
+      pos.y = 567.8;
+      // exercise
+      double y = pos.getPixelsY();
+      // verify
+      assertEquals(pos.x, 123.4);
+      assertEquals(pos.y, 567.8);
+      assertEquals(pos.metersFromPixels, 100);
+      assertEquals(y, 5.678);
+      // teardown
+      Position::metersFromPixels = metersFromPixels;
    }
 
    /*****************************************************************
@@ -353,7 +432,20 @@ private:
     *********************************************/
    void setPixelsX_noZoom()
    {
-      assertUnit(NOT_YET_IMPLEMENTED);
+      // setup
+      double metersFromPixels = Position::metersFromPixels;
+      Position::metersFromPixels = 1;
+      Position pos;
+      pos.x = 999.9;
+      pos.y = 888.8;
+      // exercise
+      pos.setPixelsX(123.4);
+      // verify
+      assertEquals(pos.x, 123.4);
+      assertEquals(pos.y, 888.8);
+      assertEquals(pos.metersFromPixels, 1);
+      // teardown
+      Position::metersFromPixels = metersFromPixels;
    }
 
    /*********************************************
@@ -364,7 +456,20 @@ private:
     *********************************************/
    void setPixelsX_zoom()
    {
-      assertUnit(NOT_YET_IMPLEMENTED);
+      // setup
+      double metersFromPixels = Position::metersFromPixels;
+      Position::metersFromPixels = 100;
+      Position pos;
+      pos.x = 999.9;
+      pos.y = 888.8;
+      // exercise
+      pos.setPixelsX(123.4);
+      // verify
+      assertEquals(pos.x, 12340.0);
+      assertEquals(pos.y, 888.8);
+      assertEquals(pos.metersFromPixels, 100);
+      // teardown
+      Position::metersFromPixels = metersFromPixels;
    }
    
    /*********************************************
@@ -374,7 +479,20 @@ private:
     *********************************************/
    void setPixelsY_noZoom()
    {
-      assertUnit(NOT_YET_IMPLEMENTED);
+      // setup
+      double metersFromPixels = Position::metersFromPixels;
+      Position::metersFromPixels = 1;
+      Position pos;
+      pos.x = 999.9;
+      pos.y = 888.8;
+      // exercise
+      pos.setPixelsY(123.4);
+      // verify
+      assertEquals(pos.x, 999.9);
+      assertEquals(pos.y, 123.4);
+      assertEquals(pos.metersFromPixels, 1);
+      // teardown
+      Position::metersFromPixels = metersFromPixels;
    }
 
    /*********************************************
@@ -384,7 +502,20 @@ private:
     *********************************************/
    void setPixelsY_zoom()
    {
-      assertUnit(NOT_YET_IMPLEMENTED);
+      // setup
+      double metersFromPixels = Position::metersFromPixels;
+      Position::metersFromPixels = 100;
+      Position pos;
+      pos.x = 999.9;
+      pos.y = 888.8;
+      // exercise
+      pos.setPixelsY(123.4);
+      // verify
+      assertEquals(pos.x, 999.9);
+      assertEquals(pos.y, 12340.0);
+      assertEquals(pos.metersFromPixels, 100);
+      // teardown
+      Position::metersFromPixels = metersFromPixels;
    }
 
    /*********************************************
@@ -394,7 +525,19 @@ private:
     *********************************************/
    void addMetersX()
    {
-      assertUnit(NOT_YET_IMPLEMENTED);
+      // setup
+      Position pos;
+      pos.x = 4500;
+      pos.y = 2500;
+
+      // exercise
+      pos.addMetersX(123.4);
+
+      // verify
+      assertEquals(pos.x, 4623.4);
+      assertEquals(pos.y, 2500);
+
+      // teardown
    }
 
    /*********************************************
@@ -404,7 +547,19 @@ private:
     *********************************************/
    void addMetersY()
    {
-      assertUnit(NOT_YET_IMPLEMENTED);
+      // setup
+      Position pos;
+      pos.x = 4500;
+      pos.y = 2500;
+
+      // exercise
+      pos.addMetersY(123.4);
+
+      // verify
+      assertEquals(pos.x, 4500);
+      assertEquals(pos.y, 2623.4);
+
+      // teardown
    }
 
    /*********************************************
@@ -414,7 +569,20 @@ private:
     *********************************************/
    void addPixelsX_noZoom()
    {
-      assertUnit(NOT_YET_IMPLEMENTED);
+      // setup
+      double metersFromPixels = Position::metersFromPixels;
+      Position::metersFromPixels = 1;
+      Position pos;
+      pos.x = 4500;
+      pos.y = 2500;
+      // exercise
+      pos.addPixelsX(3);
+      // verify
+      assertEquals(pos.x, 4503);
+      assertEquals(pos.y, 2500);
+      assertEquals(pos.metersFromPixels, 1);
+      // teardown
+      Position::metersFromPixels = metersFromPixels;
    }
 
    /*********************************************
@@ -424,7 +592,20 @@ private:
     *********************************************/
    void addPixelsX_zoom()
    {
-      assertUnit(NOT_YET_IMPLEMENTED);
+      // setup
+      double metersFromPixels = Position::metersFromPixels;
+      Position::metersFromPixels = 50.0;
+      Position pos;
+      pos.x = 4500;
+      pos.y = 2500;
+      // exercise
+      pos.addPixelsX(3);
+      // verify
+      assertEquals(pos.x, 4650);
+      assertEquals(pos.y, 2500);
+      assertEquals(pos.metersFromPixels, 50.0);
+      // teardown
+      Position::metersFromPixels = metersFromPixels;
    }
 
    /*********************************************
@@ -434,7 +615,20 @@ private:
     *********************************************/
    void addPixelsY_noZoom()
    {
-      assertUnit(NOT_YET_IMPLEMENTED);
+      // setup
+      double metersFromPixels = Position::metersFromPixels;
+      Position::metersFromPixels = 1;
+      Position pos;
+      pos.x = 4500;
+      pos.y = 2500;
+      // exercise
+      pos.addPixelsY(3);
+      // verify
+      assertEquals(pos.x, 4500);
+      assertEquals(pos.y, 2503);
+      assertEquals(pos.metersFromPixels, 1);
+      // teardown
+      Position::metersFromPixels = metersFromPixels;
    }
 
    /*********************************************
@@ -444,7 +638,20 @@ private:
     *********************************************/
    void addPixelsY_zoom()
    {
-      assertUnit(NOT_YET_IMPLEMENTED);
+      // setup
+      double metersFromPixels = Position::metersFromPixels;
+      Position::metersFromPixels = 50.0;
+      Position pos;
+      pos.x = 4500;
+      pos.y = 2500;
+      // exercise
+      pos.addPixelsY(3);
+      // verify
+      assertEquals(pos.x, 4500);
+      assertEquals(pos.y, 2650);
+      assertEquals(pos.metersFromPixels, 50.0);
+      // teardown
+      Position::metersFromPixels = metersFromPixels;
    }
 
    /*********************************************
@@ -455,7 +662,14 @@ private:
     *********************************************/
    void setZoom_member()
    {
-      assertUnit(NOT_YET_IMPLEMENTED);
+      // setup
+      Position pos;
+      pos.metersFromPixels = 99.9;
+      // exercise
+      pos.setZoom(123.4);
+      // verify
+      assertEquals(pos.metersFromPixels, 123.4);
+      // teardown
    }
 
    /*********************************************
@@ -469,7 +683,17 @@ private:
     *********************************************/
    void setZoom_anotherVariable()
    {
-      assertUnit(NOT_YET_IMPLEMENTED);
+      // setup
+      Position pos1;
+      Position pos2;
+      pos1.metersFromPixels = 99.9;
+      pos2.metersFromPixels = 88.9;
+      // exercise
+      pos2.setZoom(123.4);
+      // verify
+      assertEquals(pos1.metersFromPixels, 123.4);
+      assertEquals(pos2.metersFromPixels, 123.4);
+      // teardown
    }
 
    /*********************************************
@@ -479,7 +703,31 @@ private:
     *********************************************/
    void add_stationary()
    {
-      assertUnit(NOT_YET_IMPLEMENTED);
+      // setup
+      Position pos;
+      pos.x = 11.1;
+      pos.y = 22.2;
+      Velocity vel;
+      vel.dx = 0.0;
+      vel.dy = 0.0;
+      Acceleration acc;
+      acc.ddx = 0.0;
+      acc.ddy = 0.0;
+      double t(1.0);
+
+      // exercise
+      pos.add(acc, vel, t);
+
+      // verify
+      assertEquals(pos.x, 11.1); // 11.1 = 11.1 + 0.0*1 + 1/2 0.0 1^2
+      assertEquals(pos.y, 22.2); // 22.2 = 22.2 + 0.0*1 + 1/2 0.0 1^2
+      assertEquals(vel.dx, 0.0);
+      assertEquals(vel.dy, 0.0);
+      assertEquals(acc.ddx, 0.0);
+      assertEquals(acc.ddy, 0.0);
+      assertEquals(t, 1.0);
+
+      // teardown
    }
 
    /*********************************************
@@ -490,7 +738,31 @@ private:
     *********************************************/
    void add_moving()
    {
-      assertUnit(NOT_YET_IMPLEMENTED);
+      // setup
+      Position pos;
+      pos.x = 11.1;
+      pos.y = 22.2;
+      Velocity vel;
+      vel.dx = 0.5;
+      vel.dy = 0.4;
+      Acceleration acc;
+      acc.ddx = 0.0;
+      acc.ddy = 0.0;
+      double t(1.0);
+
+      // exercise
+      pos.add(acc, vel, t);
+
+      // verify
+      assertEquals(pos.x, 11.6); // 11.6 = 11.1 + 0.5*1 + 1/2 0.0 1^2
+      assertEquals(pos.y, 22.6); // 22.6 = 22.2 + 0.4*1 + 1/2 0.0 1^2
+      assertEquals(vel.dx, 0.5);
+      assertEquals(vel.dy, 0.4);
+      assertEquals(acc.ddx, 0.0);
+      assertEquals(acc.ddy, 0.0);
+      assertEquals(t, 1.0);
+
+      // teardown
    }
 
    /*********************************************
@@ -501,7 +773,31 @@ private:
     *********************************************/
    void add_movingLonger()
    {
-      assertUnit(NOT_YET_IMPLEMENTED);
+      // setup
+      Position pos;
+      pos.x = 11.1;
+      pos.y = 22.2;
+      Velocity vel;
+      vel.dx = 0.5;
+      vel.dy = 0.4;
+      Acceleration acc;
+      acc.ddx = 0.0;
+      acc.ddy = 0.0;
+      double t(2.0);
+
+      // exercise
+      pos.add(acc, vel, t);
+
+      // verify
+      assertEquals(pos.x, 12.1); // 11.6 = 11.1 + 0.5*2 + 1/2 0.0 2^2
+      assertEquals(pos.y, 23.0); // 22.6 = 22.2 + 0.4*2 + 1/2 0.0 2^2
+      assertEquals(vel.dx, 0.5);
+      assertEquals(vel.dy, 0.4);
+      assertEquals(acc.ddx, 0.0);
+      assertEquals(acc.ddy, 0.0);
+      assertEquals(t, 2.0);
+
+      // teardown
    }
 
    /*********************************************
@@ -512,7 +808,31 @@ private:
     *********************************************/
    void add_fromStop()
    {
-      assertUnit(NOT_YET_IMPLEMENTED);
+      // setup
+      Position pos;
+      pos.x = 11.1;
+      pos.y = 22.2;
+      Velocity vel;
+      vel.dx = 0.0;
+      vel.dy = 0.0;
+      Acceleration acc;
+      acc.ddx = 0.2;
+      acc.ddy = 0.3;
+      double t(1.0);
+
+      // exercise
+      pos.add(acc, vel, t);
+
+      // verify
+      assertEquals(pos.x, 11.20); // 11.20 = 11.1 + 0.0*1 + 1/2 0.2 1^2
+      assertEquals(pos.y, 22.35); // 22.35 = 22.2 + 0.0*1 + 1/2 0.3 1^2
+      assertEquals(vel.dx, 0.0);
+      assertEquals(vel.dy, 0.0);
+      assertEquals(acc.ddx, 0.2);
+      assertEquals(acc.ddy, 0.3);
+      assertEquals(t, 1.0);
+
+      // teardown
    }
 
    /*********************************************
@@ -523,7 +843,31 @@ private:
     *********************************************/
    void add_fromStopLonger()
    {
-      assertUnit(NOT_YET_IMPLEMENTED);
+      // setup
+      Position pos;
+      pos.x = 11.1;
+      pos.y = 22.2;
+      Velocity vel;
+      vel.dx = 0.0;
+      vel.dy = 0.0;
+      Acceleration acc;
+      acc.ddx = 0.2;
+      acc.ddy = 0.3;
+      double t(2.0);
+
+      // exercise
+      pos.add(acc, vel, t);
+
+      // verify
+      assertEquals(pos.x, 11.5); // 11.5 = 11.1 + 0.0*2 + 1/2 0.2 2^2
+      assertEquals(pos.y, 22.8); // 22.8 = 22.2 + 0.0*2 + 1/2 0.3 2^2
+      assertEquals(vel.dx, 0.0);
+      assertEquals(vel.dy, 0.0);
+      assertEquals(acc.ddx, 0.2);
+      assertEquals(acc.ddy, 0.3);
+      assertEquals(t, 2.0);
+
+      // teardown
    }
    
    /*********************************************

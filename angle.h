@@ -12,6 +12,9 @@
 #define _USE_MATH_DEFINES
 #include <math.h>   // for M_PI which is 3.14159
 
+#include <iostream>
+using namespace std;
+
  // for the unit tests
 class TestAngle;
 class TestPosition;
@@ -25,6 +28,22 @@ class TestProjectile;
   ************************************/
 class Angle
 {
+private:
+   double radians;   // 360 degrees equals 2 PI radians
+
+   double normalize(double radians) const;
+
+   double convertToRadians(double degrees) const
+   {
+      return degrees / 360.0 * (M_PI * 2);
+   }
+
+   double convertToDegrees(double radians) const
+   {
+      return radians / (M_PI * 2.0) * 360.0;
+   }
+
+
 public:
    // for the unit tests
    friend TestAcceleration;
@@ -34,13 +53,23 @@ public:
    friend TestProjectile;
 
    // Constructors
-   Angle()                  : radians(9.9)         {}
-   Angle(const Angle& rhs)  : radians(9.9)         {}
-   Angle(double degrees)    : radians(9.9)         {}
+
+   Angle() :                  radians(0.0) {}
+   Angle(const Angle& rhs) :  radians(rhs.radians) {}
+   Angle(double degrees) :    radians(0.0)
+   {
+      setDegrees(degrees);
+   }
 
    // Getters
-   double getDegrees() const { return 9.9; }
-   double getRadians() const { return 9.9; }
+   double getDegrees() const
+   {
+      return convertToDegrees(radians);
+   }
+   double getRadians() const
+   {
+      return radians;
+   }
 
    //         dx
    //    +-------/
@@ -52,22 +81,56 @@ public:
    //    | /
    // dy = cos a
    // dx = sin a
-   double getDx() const { return 9.9; }
-   double getDy() const { return 9.9; }
-   bool   isRight()          const { return true; }
-   bool   isLeft()           const { return true; }
+   double getDx() const 
+   {
+      
+      return sin(radians);
+   }
+   double getDy() const 
+   { 
+      return cos(radians); 
+   }
+   bool   isRight()          const { return radians < M_PI;}
+   bool   isLeft()           const { return radians > M_PI;}
 
 
    // Setters
-   void setDegrees(double degrees) { }
-   void setRadians(double radians) { }
-   void setUp()                    { }
-   void setDown()                  { }
-   void setRight()                 { }
-   void setLeft()                  { }
-   void reverse()                  { }
-   Angle& add(double delta)        { return *this; }
+   void setDegrees(double degrees)
+   {
+      radians = normalize(convertToRadians(degrees));
+   }
 
+   void setRadians(double radians)
+   {
+      this->radians = normalize(radians);
+   }
+   void setUp()
+   {
+      this->radians = 0.0;
+   }
+
+   void setDown()
+   {
+      radians = M_PI;
+   }
+   void setRight()
+   {
+      radians = M_PI * 0.5;
+   }
+
+   void setLeft()
+   {
+      radians = M_PI * 1.5;
+   }
+   void reverse()
+   {
+      radians = normalize(radians + M_PI);
+   }
+   Angle& add(double delta)
+   {
+      radians = normalize(radians + delta);
+      return *this;
+   }
    // set based on the components
    //         dx
    //     +-------/
@@ -77,14 +140,9 @@ public:
    //     | a /
    //     |  /
    //     | /
-   void setDxDy(double dx, double dy)  { }
+   void setDxDy(double dx, double dy)  {radians = normalize(atan(dx / dy));}
    Angle operator+(double degrees) const { return Angle(); }
 
-private:
-
-   double normalize(double radians) const;
-
-   double radians;   // 360 degrees equals 2 PI radians
 };
 
 #include <iostream>

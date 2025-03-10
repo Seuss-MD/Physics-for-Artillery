@@ -15,12 +15,21 @@
 #include <cassert>
 
 /*********************************************
- * VELOCITY : ADD
+ * VELOCITY : ADDA
  *  v = v_0 + a t
  *********************************************/
 void Velocity::add(const Acceleration& acceleration, double time)
 {
-
+   dx = dx + acceleration.getDDX() * time;
+   dy = dy + acceleration.getDDY() * time;
+}
+/*********************************************
+ * VELOCITY : ADDV
+ *********************************************/
+void Velocity::addV(const Velocity& rhs) 
+{
+   addDX(rhs.getDX());
+   addDY(rhs.getDY());
 }
 
 
@@ -40,7 +49,7 @@ void Velocity::add(const Acceleration& acceleration, double time)
  *********************************************/
 double Velocity::getSpeed() const
 {
-   return 9.9;
+   return sqrt(dx * dx + dy * dy);
 }
 
 /*********************************************
@@ -58,7 +67,8 @@ double Velocity::getSpeed() const
  *********************************************/
 void Velocity::set(const Angle & angle, double magnitude)
 {
-
+   this->dx = magnitude * sin(angle.getRadians());
+   this->dy = magnitude * cos(angle.getRadians());
 }
 
 
@@ -81,6 +91,8 @@ void Velocity::set(const Angle & angle, double magnitude)
  ************************************************/
 Angle Velocity::getAngle() const
 {
-   return Angle();
+   Angle a;
+   a.setDxDy(dx,dy);
+   return a;
 }
 

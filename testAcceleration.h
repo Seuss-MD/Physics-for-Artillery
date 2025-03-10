@@ -323,7 +323,19 @@ private:
     *********************************************/
    void addDDX_zero()
    {
-      assertUnit(NOT_YET_IMPLEMENTED);
+      // setup
+      Acceleration a(2.3, 4.5);
+      a.ddx = 2.3;
+      a.ddy = 4.5;
+
+      // exercise
+      a.addDDX(0.0);
+
+      // verify
+      assertEquals(a.ddx, 2.3); // 2.3 + 0.0
+      assertEquals(a.ddy, 4.5); // 4.5
+      
+      // teardown
    }
    
    /*********************************************
@@ -333,7 +345,19 @@ private:
     *********************************************/
    void addDDX_value()
    {
-      assertUnit(NOT_YET_IMPLEMENTED);
+      // setup
+      Acceleration a(2.3, 4.5);
+      a.ddx = 2.3;
+      a.ddy = 4.5;
+
+      // exercise
+      a.addDDX(4.1);
+
+      // verify
+      assertEquals(a.ddx, 6.4); // 2.3 + 4.1
+      assertEquals(a.ddy, 4.5); // 4.5
+
+      // teardown
    }
 
    /*********************************************
@@ -343,7 +367,19 @@ private:
     *********************************************/
    void addDDY_zero()
    {
-      assertUnit(NOT_YET_IMPLEMENTED);
+      // setup
+      Acceleration a(2.3, 4.5);
+      a.ddx = 2.3;
+      a.ddy = 4.5;
+
+      // exercise
+      a.addDDY(0.0);
+
+      // verify
+      assertEquals(a.ddx, 2.3); // 2.3
+      assertEquals(a.ddy, 4.5); // 4.5 + 0.0
+
+      // teardown
    }
 
    /*********************************************
@@ -353,7 +389,19 @@ private:
     *********************************************/
    void addDDY_value()
    {
-      assertUnit(NOT_YET_IMPLEMENTED);
+      // setup
+      Acceleration a(2.3, 4.5);
+      a.ddx = 2.3;
+      a.ddy = 4.5;
+
+      // exercise
+      a.addDDY(4.1);
+
+      // verify
+      assertEquals(a.ddx, 2.3); // 2.3
+      assertEquals(a.ddy, 8.6); // 4.5 + 4.1
+
+      // teardown
    }
 
    /*********************************************
@@ -363,7 +411,22 @@ private:
     *********************************************/
    void add_zeroZero()
    {
-      assertUnit(NOT_YET_IMPLEMENTED);
+      // setup
+      Acceleration aRHS(0.0, 0.0);
+      Acceleration aLHS(aRHS);
+      aRHS.ddx = 0.0;
+      aRHS.ddy = 0.0;
+      aLHS.ddx = 0.0;
+      aLHS.ddy = 0.0;
+
+      // exercise
+      aLHS.add(aRHS);
+
+      // verify
+      assertEquals(aLHS.ddx, 0.0); // 0.0 + 0.0
+      assertEquals(aLHS.ddy, 0.0); // 0.0 + 0.0
+
+      // teardown
    }
 
    /*********************************************
@@ -373,7 +436,22 @@ private:
     *********************************************/
    void add_valueZero()
    {
-      assertUnit(NOT_YET_IMPLEMENTED);
+      // setup
+      Acceleration aRHS(0.0, 0.0);
+      Acceleration aLHS(aRHS);
+      aRHS.ddx = 0.0;
+      aRHS.ddy = 0.0;
+      aLHS.ddx = 1.1;
+      aLHS.ddy = 2.2;
+
+      // exercise
+      aLHS.add(aRHS);
+
+      // verify
+      assertEquals(aLHS.ddx, 1.1); // 1.1 + 0.0
+      assertEquals(aLHS.ddy, 2.2); // 2.2 + 0.0
+
+      // teardown
    }
 
    /*********************************************
@@ -383,7 +461,22 @@ private:
     *********************************************/
    void add_zeroValue()
    {
-      assertUnit(NOT_YET_IMPLEMENTED);
+      // setup
+      Acceleration aRHS(0.0, 0.0);
+      Acceleration aLHS(aRHS);
+      aRHS.ddx = 4.4;
+      aRHS.ddy = 7.7;
+      aLHS.ddx = 0.0;
+      aLHS.ddy = 0.0;
+
+      // exercise
+      aLHS.add(aRHS);
+
+      // verify
+      assertEquals(aLHS.ddx, 4.4); // 0.0 + 4.4
+      assertEquals(aLHS.ddy, 7.7); // 0.0 + 7.7
+
+      // teardown
    }
 
    /*********************************************
@@ -393,7 +486,22 @@ private:
     *********************************************/
    void add_valueValue()
    {
-      assertUnit(NOT_YET_IMPLEMENTED);
+      // setup
+      Acceleration aRHS(0.0, 0.0);
+      Acceleration aLHS(aRHS);
+      aRHS.ddx = 4.4;
+      aRHS.ddy = 7.7;
+      aLHS.ddx = 1.1;
+      aLHS.ddy = 2.2;
+
+      // exercise
+      aLHS.add(aRHS);
+
+      // verify
+      assertEquals(aLHS.ddx, 5.5); // 1.1 + 4.4
+      assertEquals(aLHS.ddy, 9.9); // 2.2 + 7.7
+
+      // teardown
    }
 
 };
