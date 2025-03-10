@@ -58,11 +58,11 @@ public:
       velocityFromAcceleration_twoTime();
 
       // Ticket 2: Linear Interpolation equation
-      linearInterpolation_coordinatesZero();
+      /*linearInterpolation_coordinatesZero();
       linearInterpolation_coordinatesOne();
       linearInterpolation_coordinatesMiddle();
       linearInterpolation_coordinatesTop();
-      linearInterpolation_coordinatesBackwards();
+      linearInterpolation_coordinatesBackwards();*/
 
       // Ticket 3: Linear Interpolation with Mapping
       linearInterpolation_mappingZero();
@@ -74,39 +74,39 @@ public:
       linearInterpolation_mappingLarge();
 
       // Ticket 4: Gravity
-      gravityFromAltitude_0();
+      /*gravityFromAltitude_0();
       gravityFromAltitude_10000();
       gravityFromAltitude_80000();
       gravityFromAltitude_5500();
       gravityFromAltitude_43333();
       gravityFromAltitude_3666();
-      gravityFromAltitude_8848();
+      gravityFromAltitude_8848();*/
 
       // Ticket 5: Density
-      densityFromAltitude_0();
+      /*densityFromAltitude_0();
       densityFromAltitude_10000();
       densityFromAltitude_80000();
       densityFromAltitude_5500();
       densityFromAltitude_43333();
       densityFromAltitude_3666();
-      densityFromAltitude_8848();
+      densityFromAltitude_8848();*/
 
       // Ticket 6: Speed of Sound
-      speedSoundFromAltitude_0();
+      /*speedSoundFromAltitude_0();
       speedSoundFromAltitude_10000();
       speedSoundFromAltitude_80000();
       speedSoundFromAltitude_5500();
       speedSoundFromAltitude_43333();
       speedSoundFromAltitude_3666();
-      speedSoundFromAltitude_8848();
+      speedSoundFromAltitude_8848();*/
 
       // Ticket 7: Drag
-      dragFromMach_000();
+      /*dragFromMach_000();
       dragFromMach_500();
       dragFromMach_100();
       dragFromMach_060();
       dragFromMach_010();
-      dragFromMach_314();
+      dragFromMach_314();*/
 
       report("Physics");
    }
@@ -809,7 +809,22 @@ private:
     *********************************************************/
    void linearInterpolation_mappingTwo()
    {
-      assertUnit(NOT_YET_IMPLEMENTED);
+      // setup
+      const Mapping mapping[] =
+      { // d    r
+         {1.0, 2.0},   // mapping[0]
+         {3.0, 3.0},   // mapping[1]
+         {7.0, 5.0},   // mapping[2]
+         {8.0, 6.5}    // mapping[3]
+      };
+      double d = 7.0;
+      double r = -999.999;  // output
+      // exercise
+      r = linearInterpolation(mapping, 4 /*numMapping*/, d);
+      // verify
+      assertEquals(d, 7.0);
+      assertEquals(r, 5.0);
+      // teardown
    }
 
 

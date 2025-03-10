@@ -15,7 +15,7 @@
  *********************************************************/
 double linearInterpolation(const Mapping mapping[], int numMapping, double domain)
 {
-   return -99.9;
+   return 0.0;
 }
 
 /*********************************************************
