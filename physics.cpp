@@ -17,11 +17,14 @@ double linearInterpolation(const Mapping mapping[], int numMapping, double domai
 {
 
    int index1 = 0;
-   for (int i = 0; i >= numMapping - 1; ++i)
+   for (int i = 0; i <= numMapping - 1; ++i)
    {
+      if (domain <= mapping[0].domain)
+         return mapping[0].range;
+      if (domain >= mapping[numMapping - 1].domain)
+         return mapping[numMapping - 1].range;
       if (mapping[i].domain <= domain)
          index1 = i;
-
    }
    int index0 = index1 + 1;
 
@@ -145,6 +148,7 @@ double dragFromMach(double speedMach)
 {
    const Mapping mapping[] =
    { // d     r
+      {0.0,   0.0   },
       {0.300, 0.1629},
       {0.500, 0.1659},
       {0.700, 0.2031},
@@ -163,7 +167,7 @@ double dragFromMach(double speedMach)
       {5.000, 0.2656}
    };
 
-   double drag = linearInterpolation(mapping, 16, speedMach);
+   double drag = linearInterpolation(mapping, 17, speedMach);
    return drag;
 }
 

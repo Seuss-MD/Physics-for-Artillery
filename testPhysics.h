@@ -792,27 +792,27 @@ private:
     *    |   3,5 * (d,r)
     *    |        \
     *   r|         \
-    *    |      7,-3 * (d0,r0)
+    *    |      7,-3 * (d1,r1)
     *    +-------------
     *         d
     *********************************************************/
    void linearInterpolation_coordinatesBackwards()
    {  // setup
-      double d1 = 8.0;
-      double d0 = 0.0;
+      double d1 = 7.0;
+      double d0 = 1.0;
       double d = 3.0;
-      double r1 = 8.0;
-      double r0 = 0.0;
+      double r1 = -3.0;
+      double r0 = 9.0;
       double r = -9999.99;
       // exercise
       r = linearInterpolation(d0, r0, d1, r1, d);
       // verify
       assertEquals(r, 5.0);
-      assertEquals(r0, 0.0);
-      assertEquals(r1, 8.0);
+      assertEquals(r0, 9.0);
+      assertEquals(r1, -3.0);
       assertEquals(d, 3.0);
-      assertEquals(d0, 0.0);
-      assertEquals(d1, 8.0);
+      assertEquals(d0, 1.0);
+      assertEquals(d1, 7.0);
    }  // teardown
 
 
@@ -1281,12 +1281,12 @@ private:
    void densityFromAltitude_5500()
    {
       // setup
-      double altitude = 55000;
+      double altitude = 5500;
       double density = -999.999;
       // exercise
       density = densityFromAltitude(altitude);
       // verify
-      assertEquals(altitude, 55000);
+      assertEquals(altitude, 5500);
       assertEquals(density, 0.69825);
       // teardown
    }

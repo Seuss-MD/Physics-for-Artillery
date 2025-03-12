@@ -92,7 +92,20 @@ inline double linearInterpolation(double d0, double r0,
                                   double d1, double r1,
                                   double d)
 {
-   return r0 + (r1 - r0) * (d - d0) / (d1 - d0);
+   if (d1 > d0)  // if slope is negative
+   {
+      // swap d0 and d1
+      double tempD = d0;
+      d0 = d1;
+      d1 = tempD;
+      // swap r0 and r1
+      double tempR = r0;
+      r0 = r1;
+      r1 = tempR;
+   }
+
+   double r = r0 + (r1 - r0) * (d - d0) / (d1 - d0);
+   return r;
 
 }
 
